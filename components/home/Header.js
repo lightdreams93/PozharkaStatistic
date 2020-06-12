@@ -1,12 +1,12 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 
-const Header = () => {
+const Header = (props) => {
     return (
         <Appbar.Header>
+            <Appbar.Action icon="home" />
             <Appbar.Content
-                title="SaveLife"
-                subtitle="просмотр статистики"
+                title={props.title}
             />
         </Appbar.Header>
     )

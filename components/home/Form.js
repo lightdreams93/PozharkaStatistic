@@ -3,7 +3,7 @@ import { StyleSheet, Picker, ToastAndroid } from 'react-native';
 import { Button, Divider, Text } from 'react-native-paper';
 import InputTextField from './InputField';
 
-const Form = () => {
+const Form = (props) => {
 
     const [selectedType, setSelectedType] = useState('email')
     const [inputValue, setInputValue] = useState('');
@@ -21,7 +21,11 @@ const Form = () => {
             </Picker>
             <Divider style={styles.divider} />
             <InputTextField selectedType={selectedType} setInputValue={setInputValue} inputValue={inputValue} />
-            <Button mode='contained' onPress={() => { ToastAndroid.show(inputValue, ToastAndroid.SHORT) }}>Далее</Button>
+            <Button mode='contained' onPress={() => {
+                (inputValue.length === 0 || !inputValue.trim()) ?
+                    ToastAndroid.show('Заполните текстовое поле!', ToastAndroid.SHORT)
+                    : props.navigation.navigate('InfoScreen', { value: inputValue })
+            }}>Далее</Button>
         </>
     )
 }

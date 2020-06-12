@@ -1,28 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-paper';
 
 const InputField = (props) => {
 
-    let inputField
+    return (
+        props.selectedType === 'email' ?
+            <TextInput style={styles.textInput}
+                mode='flat'
+                value={props.inputValue}
+                label='Введите e-mail...'
+                onChangeText={value => props.setInputValue(value)}
+            />
+            :
+            <TextInput style={styles.textInput}
+                mode='flat'
+                value={props.inputValue}
+                label='Введите ключевое слово...'
+                onChangeText={value => props.setInputValue(value)}
+            />
+    )
 
-    if (props.selectedType === 'email') {
-        inputField = <TextInput style={styles.textInput}
-            mode='flat'
-            value={props.inputValue}
-            label='Введите e-mail...'
-            onChangeText={value => props.setInputValue(value)}
-        />
-    } else {
-        inputField = <TextInput style={styles.textInput}
-            mode='flat'
-            value={props.inputValue}
-            label='Введите ключевое слово...'
-            onChangeText={value => props.setInputValue(value)}
-        />
-    }
-
-    return inputField
 }
 
 const styles = StyleSheet.create({

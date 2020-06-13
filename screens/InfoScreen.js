@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator } from 'react-native'
+import { ActivityIndicator, StatusBar } from 'react-native'
 import { Text } from 'react-native-paper'
 import ContentLayout from '../components/layouts/ContentLayout'
 import ContainerLayout from '../components/layouts/ContainerLayout'
@@ -47,6 +47,7 @@ const InfoScreen = (props) => {
     } else {
         return (
             <InfoScreenContext.Provider value={data.data}>
+                <StatusBar backgroundColor="maroon" barStyle="light-content" />
                 <InfoRoute />
             </InfoScreenContext.Provider>
         )

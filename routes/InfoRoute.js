@@ -9,9 +9,10 @@ const Tab = createBottomTabNavigator();
 
 const InfoRoute = () => {
     return (
-        <Tab.Navigator screenOptions={({ route }) => ({
-            initialRouteName: "Профиль",
-        })}
+        <Tab.Navigator
+            screenOptions={({ route }) => ({
+                initialRouteName: "Профиль",
+            })}
             tabBarOptions={{
                 activeTintColor: 'crimson',
                 inactiveTintColor: 'gray',

@@ -3,15 +3,13 @@ import { Appbar } from 'react-native-paper';
 
 const Header = (props) => {
 
-    const handleHome = () => {
-        props.navigation.navigate('HomeScreen')
-    }
+    const { navigation, title } = props
 
     return (
         <Appbar.Header>
-            <Appbar.Action icon="home" onPress={() => { handleHome() }} />
+            <Appbar.Action icon="home" onPress={() => navigation.navigate('HomeScreen')} />
             <Appbar.Content
-                title={props.title}
+                title={title}
             />
         </Appbar.Header>
     )

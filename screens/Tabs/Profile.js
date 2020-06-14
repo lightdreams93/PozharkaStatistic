@@ -1,10 +1,8 @@
-import React, { useContext } from 'react'
-import { Text } from 'react-native'
+import React from 'react'
 import { List } from 'react-native-paper'
-import ContentLayout from '../components/layouts/ContentLayout'
-import ContainerLayout from '../components/layouts/ContainerLayout'
-import InfoScreenContext from '../components/InfoScreenContext'
-import Header from '../components/home/Header'
+import InfoScreenContext from '../../components/context/InfoScreenContext'
+import Header from '../../components/home/Header'
+import ContainerNotouchable from '../../components/layouts/ContainerNotouchable'
 
 const Profile = (props) => {
 
@@ -12,7 +10,7 @@ const Profile = (props) => {
     const data = React.useContext(InfoScreenContext)
 
     return (
-        <ContainerLayout>
+        <ContainerNotouchable>
             <Header title="Профиль" navigation={navigation} />
             <List.Item
                 title="ФИО"
@@ -24,7 +22,7 @@ const Profile = (props) => {
                 description={data.email}
                 left={props => <List.Icon {...props} icon="email-newsletter" />}
             />
-        </ContainerLayout>
+        </ContainerNotouchable>
     )
 }
 

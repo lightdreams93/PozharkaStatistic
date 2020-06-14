@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import HomeScreen from '../screens/HomeScreen'
 import InfoScreen from '../screens/InfoScreen'
+import DetailsScreen from '../screens/DetailsScreen'
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,14 @@ const HomeRoute = () => {
                     component={InfoScreen}
                     options={{
                         title: 'Статистика',
+                        headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name='DetailsScreen'
+                    component={DetailsScreen}
+                    options={{
+                        title: 'Подробности',
                         headerShown: false
                     }}
                 />

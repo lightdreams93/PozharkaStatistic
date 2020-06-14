@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, StatusBar } from 'react-native'
-import { Text } from 'react-native-paper'
-import ContentLayout from '../components/layouts/ContentLayout'
-import ContainerLayout from '../components/layouts/ContainerLayout'
+import { StatusBar } from 'react-native'
+
 import * as firebase from 'firebase'
+
 import InfoRoute from '../routes/InfoRoute'
-import InfoScreenContext from '../components/InfoScreenContext'
+import InfoScreenContext from '../components/context/InfoScreenContext'
+import LoadIndicator from '../components/activityIndicator/LoadIndicator'
+import Error from '../components/error/Error'
 
 const InfoScreen = (props) => {
+
     const { value } = props.route.params
     const [data, setData] = useState({ loading: true, error: false, errorText: '', data: {} })
 
-    useEffect(() => {
+    const getFromDatabase = (value) => {
         firebase.database().ref('/').orderByChild("email").equalTo(value).on('value', snapshot => {
 
             if (!snapshot.exists())
@@ -23,27 +25,14 @@ const InfoScreen = (props) => {
         }, error => {
             setData(prev => { return { loading: true, error: true, errorText: error } })
         })
+    }
+
+    useEffect(() => {
+        getFromDatabase(value)
     }, [])
 
     if (data.loading) {
-        if (data.error) {
-            return (
-                <ContainerLayout>
-                    <ContentLayout centered>
-                        <Text style={{ textAlign: 'center' }}>Что-то пошло не так!</Text>
-                    </ContentLayout>
-                </ContainerLayout>
-            )
-        } else {
-            return (
-                <ContainerLayout>
-                    <ContentLayout centered>
-                        <ActivityIndicator size="large" color="maroon" />
-                    </ContentLayout>
-                </ContainerLayout>
-            )
-        }
-
+        return data.error ? <Error /> : <LoadIndicator />
     } else {
         return (
             <InfoScreenContext.Provider value={data.data}>
@@ -54,4 +43,4 @@ const InfoScreen = (props) => {
     }
 }
 
-export default InfoScreen;
+export default InfoScreen

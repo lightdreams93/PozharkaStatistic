@@ -22,7 +22,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lightdreams.pozharka",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "package": "com.lightdreams.pozharka",

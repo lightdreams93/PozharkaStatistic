@@ -1,8 +1,8 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from '../screens/Profile'
-import Daily from '../screens/Daily'
-import Exam from '../screens/Exam'
+import Profile from '../screens/Tabs/Profile'
+import Daily from '../screens/Tabs/Daily'
+import Exam from '../screens/Tabs/Exam'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();

@@ -24,8 +24,8 @@ const Profile = (props) => {
             />
             <List.Item
                 title="Время в игре"
-                description={`${Math.trunc(((data.timeGame / 3600) * 100) / 100)} часов ${Math.trunc(((data.timeGame / 60) * 100) / 100)} минут`}
-                left={props => <List.Icon {...props} icon="email-newsletter" />}
+                description={`${Math.trunc(((data.timeGame / 3600) * 100) / 100)} часов ${Math.trunc(((data.timeGame % 3600 / 60) * 100) / 100)} минут`}
+                left={props => <List.Icon {...props} icon="clock" />}
             />
         </ContainerNotouchable>
     )

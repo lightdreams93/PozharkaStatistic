@@ -13,7 +13,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#fff"
+      "backgroundColor": "#000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,9 +22,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.lightdreams.pozharka",
-      "buildNumber": "1.0.0"
+      "supportsTablet": true
     },
     "android": {
       "package": "com.lightdreams.pozharka",

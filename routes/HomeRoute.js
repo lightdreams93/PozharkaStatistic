@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from '../screens/HomeScreen'
 import InfoScreen from '../screens/InfoScreen'
 import DetailsScreen from '../screens/DetailsScreen'
+import StudentsScreen from '../screens/StudentsScreen'
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,14 @@ const HomeRoute = () => {
                 <Stack.Screen
                     name='HomeScreen'
                     component={HomeScreen}
+                    options={{
+                        title: 'Awesome app',
+                        headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name='StudentsScreen'
+                    component={StudentsScreen}
                     options={{
                         title: 'Awesome app',
                         headerShown: false

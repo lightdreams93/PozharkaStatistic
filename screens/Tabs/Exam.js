@@ -9,7 +9,7 @@ const Exam = (props) => {
     const data = React.useContext(InfoScreenContext)
     return (
         <>
-            <Header title="Дневной тест" navigation={navigation} />
+            <Header title="Экзамен" navigation={navigation} />
             <ContainerNotouchable>
                 <TableData data={data.examQuiz} navigation={navigation} />
             </ContainerNotouchable>

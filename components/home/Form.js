@@ -24,7 +24,7 @@ const Form = (props) => {
             <Button mode='contained' onPress={() => {
                 (inputValue.length === 0 || !inputValue.trim()) ?
                     ToastAndroid.show('Заполните текстовое поле!', ToastAndroid.SHORT)
-                    : props.navigation.navigate('InfoScreen', { value: inputValue })
+                    : (selectedType === 'email') ? props.navigation.navigate('InfoScreen', { value: inputValue }) : props.navigation.navigate('StudentsScreen', { value: inputValue })
             }}>Далее</Button>
         </>
     )

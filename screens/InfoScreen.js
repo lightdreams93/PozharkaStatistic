@@ -13,22 +13,24 @@ const InfoScreen = (props) => {
     const { value } = props.route.params
     const [data, setData] = useState({ loading: true, error: false, errorText: '', data: {} })
 
-    const getFromDatabase = (value) => {
-        firebase.database().ref('/').orderByChild("email").equalTo(value).on('value', snapshot => {
+   
 
-            if (!snapshot.exists())
-                return setData(prev => { return { loading: true, error: true } })
+    useEffect(() => {
+        let onValueChanged = firebase.database().ref('/').orderByChild("email").equalTo(value).on('value', snapshot => {
 
-            snapshot.forEach((childSnapshot) => {
-                setData(prev => { return { loading: false, data: childSnapshot.val() } })
-            });
+            if (!snapshot.exists()) {
+                setData(prev => { return { loading: true, error: true } })
+            }
+            else {
+                snapshot.forEach((childSnapshot) => {
+                    setData(prev => { return { loading: false, data: childSnapshot.val() } })
+                });
+            }
         }, error => {
             setData(prev => { return { loading: true, error: true, errorText: error } })
         })
-    }
 
-    useEffect(() => {
-        getFromDatabase(value)
+        return () => firebase.database().ref('/').orderByChild("email").equalTo(value).off('value', onValueChanged)
     }, [])
 
     if (data.loading) {

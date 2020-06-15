@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { List } from 'react-native-paper'
 import InfoScreenContext from '../../components/context/InfoScreenContext'
 import Header from '../../components/home/Header'
 import ContainerNotouchable from '../../components/layouts/ContainerNotouchable'
+import { useFocusEffect, StackActions } from '@react-navigation/native'
+import { BackHandler } from 'react-native'
 
 const Profile = (props) => {
 
     const { navigation } = props
     const data = React.useContext(InfoScreenContext)
+    useFocusEffect(
+        React.useCallback(() => {
+            const onBackPress = () => {
+                navigation.dispatch(
+                    StackActions.replace('HomeScreen')
+                );
+            };
+
+            BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+            return () =>
+                BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        }, [])
+    );
 
     return (
         <ContainerNotouchable>

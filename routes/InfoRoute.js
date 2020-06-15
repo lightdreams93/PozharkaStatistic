@@ -12,6 +12,7 @@ const InfoRoute = () => {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 initialRouteName: "Профиль",
+                backBehavior: 'order'
             })}
             tabBarOptions={{
                 activeTintColor: 'crimson',

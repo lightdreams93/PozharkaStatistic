@@ -15,8 +15,9 @@ const StudentsScreen = (props) => {
 
     const [data, setData] = useState({ loading: true, error: false, data: [] })
 
-    const getFromDatabase = (value) => {
-        firebase.database().ref('/').orderByChild("keyWord").equalTo(value).on('value', snapshot => {
+    
+    useEffect(() => {
+        let onValueChanged = firebase.database().ref('/').orderByChild("keyWord").equalTo(value).on('value', snapshot => {
 
             let tempData = [];
             snapshot.forEach((childSnapshot) => {
@@ -27,10 +28,8 @@ const StudentsScreen = (props) => {
         }, error => {
             setData({ loading: true, error: true })
         })
-    }
 
-    useEffect(() => {
-        getFromDatabase(value)
+        return () => firebase.database().ref('/').orderByChild("email").equalTo(value).off('value', onValueChanged)
     }, [])
     if (data.loading) {
         return data.error ? <Error /> : <LoadIndicator />
